@@ -31,9 +31,16 @@ class _BottomNavigationState extends State<BottomNavigation> {
       currentIndex: navigation.page.toInt(),
       onTap: (value) {
         int currentIndex = navigation.page.toInt();
-        if (isCurrentRoutes(0, value, currentIndex)) Get.to(HomeScreen());
-        if (isCurrentRoutes(1, value, currentIndex)) Get.to(TimelineScreen());
-        if (isCurrentRoutes(2, value, currentIndex)) Get.to(InsertMealScreen());
+        if (isCurrentRoutes(0, value, currentIndex)) {
+          Get.to(HomeScreen());
+        }
+        if (isCurrentRoutes(1, value, currentIndex)) {
+          Get.to(const TimelineScreen());
+        }
+
+        if (isCurrentRoutes(2, value, currentIndex)) {
+          Get.to(const InsertMealScreen());
+        }
         navigation.changeIndex(value);
       },
       items: const <BottomNavigationBarItem>[
