@@ -31,10 +31,10 @@ class _ComposableCardState extends State<ComposableCard> {
             children: <Widget>[
               Text(
                 widget.cardTitle,
-                style: kCardTitleStyle,
+                style: kHomeCardTitle,
               ),
               const SizedBox(height: 10),
-              Text(widget.cardValue, style: kCardSubTitleStyle),
+              Text(widget.cardValue, style: kHomeCardSubTitle),
             ],
           ),
         ),
