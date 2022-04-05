@@ -1,6 +1,9 @@
+import 'package:caloria/constants.dart';
 import 'package:caloria/widgets/bottom_navigation.dart';
+import 'package:caloria/widgets/meal_explorer.dart';
 import 'package:flutter/material.dart';
 
+// ignore: use_key_in_widget_constructors
 class InsertMealScreen extends StatefulWidget {
   @override
   State<InsertMealScreen> createState() => _InsertMealScreenState();
@@ -19,14 +22,20 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
           children: <Widget>[
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: 100,
                 itemBuilder: (context, index) {
                   return Card(
                     child: Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         ListTile(
-                          title: Text('Tempe x 1'),
-                          subtitle: Text('200kkal'),
+                          title: Text(
+                            'Tempe x $index',
+                            style: kCardTitleStyle,
+                          ),
+                          subtitle: const Text(
+                            '200kkal',
+                            style: kCardSubTitleStyle,
+                          ),
                         )
                       ],
                     ),
@@ -42,12 +51,19 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const MealExploler();
+                      },
+                    );
+                  },
                   child: const Text('Search Meal'),
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Add Meal'),
+                  child: const Text('Save Meal'),
                 ),
               ],
             ),
