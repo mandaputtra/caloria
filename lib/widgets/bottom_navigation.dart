@@ -39,7 +39,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         }
 
         if (isCurrentRoutes(2, value, currentIndex)) {
-          Get.to(() => const InsertMealScreen());
+          Get.to(() => InsertMealScreen());
         }
         navigation.changeIndex(value);
       },

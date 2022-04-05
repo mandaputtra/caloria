@@ -1,4 +1,6 @@
 import 'package:caloria/screens/home.dart';
+import 'package:caloria/screens/insert_meal.dart';
+import 'package:caloria/screens/timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:caloria/controllers/navigation.dart';
@@ -21,7 +23,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/InsertMealScreen': (context) => InsertMealScreen(),
+        '/TimelineScreen': (context) => const TimelineScreen(),
+      },
     );
   }
 }

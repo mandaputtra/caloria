@@ -1,6 +1,6 @@
 import 'package:caloria/constants.dart';
 import 'package:caloria/widgets/bottom_navigation.dart';
-import 'package:caloria/widgets/timeline.dart';
+// import 'package:caloria/widgets/timeline.dart';
 import 'package:flutter/material.dart';
 
 class TimelineScreen extends StatelessWidget {
