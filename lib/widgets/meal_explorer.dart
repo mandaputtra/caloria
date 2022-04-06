@@ -1,3 +1,4 @@
+import 'package:caloria/constants.dart';
 import 'package:caloria/utils/http.dart';
 import 'package:caloria/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +11,52 @@ class MealExploler extends StatefulWidget {
 }
 
 class _MealExplolerState extends State<MealExploler> {
-  final HttpSearchMeal _http = HttpSearchMeal();
+  bool _loading = false;
+  List<dynamic> _mealItems = [];
+
   final _debouncer = Debouncer(
     delay: const Duration(milliseconds: 800),
   );
+
+  Widget showLoading() {
+    if (_loading) {
+      return const CircularProgressIndicator(color: Colors.red);
+    } else {
+      // ignore: prefer_is_empty
+      return Expanded(
+        child: ListView.builder(
+          itemCount: _mealItems.length,
+          itemBuilder: (context, index) {
+            final int calorie = _mealItems[index]['calories'];
+            final String title = _mealItems[index]['title'];
+            return Card(
+              color: Colors.blue,
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    title: Text(
+                      title,
+                      style: kCardTitleStyle,
+                    ),
+                    subtitle: Text(
+                      '$calorie kkal',
+                      style: kCardSubTitleStyle,
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _debouncer.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +70,14 @@ class _MealExplolerState extends State<MealExploler> {
           children: <Widget>[
             TextField(
               onChanged: (String textSearch) {
-                _debouncer.run(() {
-                  _http.getMealData(textSearch).then((meals) {
-                    print(meals);
+                _debouncer.run(() async {
+                  setState(() {
+                    _loading = true;
+                  });
+                  var meals = await getMealData(textSearch);
+                  setState(() {
+                    _mealItems = meals;
+                    _loading = false;
                   });
                 });
               },
@@ -37,12 +85,7 @@ class _MealExplolerState extends State<MealExploler> {
                 label: Text('Search here'),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Yes'),
-            )
+            showLoading(),
           ],
         ),
       ),
