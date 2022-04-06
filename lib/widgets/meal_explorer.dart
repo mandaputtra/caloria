@@ -1,7 +1,9 @@
 import 'package:caloria/constants.dart';
+import 'package:caloria/controllers/insert_meal.dart';
 import 'package:caloria/utils/http.dart';
 import 'package:caloria/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 
 class MealExploler extends StatefulWidget {
   const MealExploler({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class MealExploler extends StatefulWidget {
 class _MealExplolerState extends State<MealExploler> {
   bool _loading = false;
   List<dynamic> _mealItems = [];
+
+  final InsertMealState mealState = Get.find();
 
   final _debouncer = Debouncer(
     delay: const Duration(milliseconds: 800),
@@ -29,11 +33,15 @@ class _MealExplolerState extends State<MealExploler> {
           itemBuilder: (context, index) {
             final int calorie = _mealItems[index]['calories'];
             final String title = _mealItems[index]['title'];
-            return Card(
-              color: Colors.blue,
-              child: Column(
-                children: <Widget>[
-                  ListTile(
+            return Column(
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () {
+                    var meal = Meal(title: title, count: 0, calories: calorie);
+                    mealState.addMeal(meal);
+                    Navigator.of(context).pop();
+                  },
+                  child: ListTile(
                     title: Text(
                       title,
                       style: kCardTitleStyle,
@@ -42,9 +50,10 @@ class _MealExplolerState extends State<MealExploler> {
                       '$calorie kkal',
                       style: kCardSubTitleStyle,
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                const SizedBox(height: 5)
+              ],
             );
           },
         ),

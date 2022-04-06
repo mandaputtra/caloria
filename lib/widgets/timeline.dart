@@ -29,7 +29,7 @@ class TimelineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = _TimelineStatus.values;
+    const data = _TimelineStatus.values;
 
     return Flexible(
       child: Timeline.tileBuilder(

@@ -1,7 +1,9 @@
 import 'package:caloria/constants.dart';
+import 'package:caloria/controllers/insert_meal.dart';
 import 'package:caloria/widgets/bottom_navigation.dart';
 import 'package:caloria/widgets/meal_explorer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 
 // ignore: use_key_in_widget_constructors
 class InsertMealScreen extends StatefulWidget {
@@ -11,6 +13,8 @@ class InsertMealScreen extends StatefulWidget {
 
 class _InsertMealScreenState extends State<InsertMealScreen> {
   TextEditingController textController = TextEditingController(text: '');
+
+  InsertMealState mealState = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +26,19 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
           children: <Widget>[
             Expanded(
               child: ListView.builder(
-                itemCount: 100,
+                itemCount: mealState.meals.length,
                 itemBuilder: (context, index) {
+                  var meal = mealState.meals[index] as Meal;
                   return Card(
                     child: Column(
                       children: <Widget>[
                         ListTile(
                           title: Text(
-                            'Tempe x $index',
+                            meal.title,
                             style: kCardTitleStyle,
                           ),
-                          subtitle: const Text(
-                            '200kkal',
+                          subtitle: Text(
+                            meal.calories.toString(),
                             style: kCardSubTitleStyle,
                           ),
                         )
@@ -63,7 +68,7 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Save Meal'),
+                  child: Text('Save Meal ${mealState.meals.length}'),
                 ),
               ],
             ),
