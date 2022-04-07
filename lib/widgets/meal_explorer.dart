@@ -1,5 +1,6 @@
 import 'package:caloria/constants.dart';
 import 'package:caloria/controllers/insert_meal.dart';
+import 'package:caloria/types/shared.dart';
 import 'package:caloria/utils/http.dart';
 import 'package:caloria/utils/utils.dart';
 import 'package:flutter/material.dart';

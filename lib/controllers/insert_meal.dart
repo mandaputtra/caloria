@@ -1,18 +1,5 @@
+import 'package:caloria/types/shared.dart';
 import 'package:get/state_manager.dart';
-
-class Meal {
-  String title;
-  int calories;
-  int count;
-
-  Meal({required this.title, required this.count, required this.calories});
-
-  update(Meal meal) {
-    title = meal.title;
-    count = meal.count;
-    calories = meal.calories;
-  }
-}
 
 class InsertMealState extends GetxController {
   var meals = [].obs;
