@@ -1,4 +1,3 @@
-import 'package:caloria/controllers/insert_meal.dart';
 import 'package:caloria/screens/home.dart';
 import 'package:caloria/screens/insert_meal.dart';
 import 'package:caloria/screens/timeline.dart';
@@ -16,7 +15,6 @@ class MyApp extends StatelessWidget {
 
   // Register navigation state
   final NavigationState navigation = Get.put(NavigationState());
-  final InsertMealState insertMealState = Get.put(InsertMealState());
 
   @override
   Widget build(BuildContext context) {

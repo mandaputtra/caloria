@@ -37,7 +37,7 @@ class _MealExplolerState extends State<MealExploler> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    var meal = Meal(title: title, count: 0, calories: calorie);
+                    var meal = Meal(title: title, count: 1, calories: calorie);
                     mealState.addMeal(meal);
                     Navigator.of(context).pop();
                   },

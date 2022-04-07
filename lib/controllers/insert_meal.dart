@@ -15,12 +15,13 @@ class Meal {
 }
 
 class InsertMealState extends GetxController {
-  RxList<dynamic> meals = [].obs;
+  var meals = [].obs;
 
   addMeal(Meal meal) {
     if (!meals.contains(meal)) {
       meals.add(meal);
     }
+    meals.refresh();
   }
 
   removeMeal(Meal meal) {
