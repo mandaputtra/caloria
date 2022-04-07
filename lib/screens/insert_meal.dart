@@ -19,15 +19,6 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
   final InsertMealState mealState = Get.put(InsertMealState());
 
   @override
-  void initState() {
-    mealState.addMeal(Meal(title: 'Tempe', count: 1, calories: 200));
-    mealState.addMeal(Meal(title: 'Tempe2', count: 1, calories: 200));
-    mealState.addMeal(Meal(title: 'Tempe3', count: 1, calories: 200));
-    mealState.addMeal(Meal(title: 'Tempe4', count: 1, calories: 200));
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: const BottomNavigation(),
@@ -62,7 +53,7 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
                               textBaseline: TextBaseline.alphabetic,
                               children: <Widget>[
                                 Text(
-                                  '${meal.calories}',
+                                  '${meal.calories * meal.count}',
                                   style: kMealCardCalories,
                                 ),
                                 const Text(
@@ -76,11 +67,16 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
                               children: <Widget>[
                                 RoundIconButton(
                                   icon: Icons.remove,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    mealState.removeCounter(index);
+                                  },
                                 ),
                                 RoundIconButton(
                                   icon: Icons.add,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    print(mealState.meals[index].calories);
+                                    mealState.addCounter(index);
+                                  },
                                 )
                               ],
                             )
