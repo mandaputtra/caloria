@@ -1,6 +1,7 @@
 import 'package:caloria/constants.dart';
 import 'package:caloria/controllers/insert_meal.dart';
 import 'package:caloria/types/shared.dart';
+import 'package:caloria/utils/utils.dart';
 import 'package:caloria/widgets/bottom_navigation.dart';
 import 'package:caloria/widgets/button.dart';
 import 'package:caloria/widgets/meal_explorer.dart';
@@ -106,7 +107,13 @@ class _InsertMealScreenState extends State<InsertMealScreen> {
                   child: const Text('Search Meal'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    var meals = mealState.meals.toList().cast<Meal>();
+                    await saveDayMeal(meals);
+                    mealState.clearInsertMealState();
+                    // var tt = await getAllDayMeals();
+                    // print(tt.length);
+                  },
                   child: const Text('Save Meal'),
                 ),
               ],
