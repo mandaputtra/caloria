@@ -6,8 +6,8 @@ import 'package:caloria/types/shared.dart';
 
 const kListMeal = 'list_meals';
 
-bool getDifferenceInDays(DayMeal el, DateTime now) {
-  return el.date.difference(now).inDays == 0;
+bool checkIfDateSame(DateTime date, DateTime now) {
+  return date.difference(now).inDays == 0;
 }
 
 class Debouncer {
@@ -36,7 +36,7 @@ Future<void> saveDayMeal(List<Meal> meals) async {
     Map<String, dynamic> decoded = jsonDecode(savedList);
     var listMeal = ListMeal.fromJson(decoded);
     var search = listMeal.listMeals
-        .where((element) => getDifferenceInDays(element, now));
+        .where((element) => checkIfDateSame(element.date, now));
     if (search.isNotEmpty) {
       var list = search.toList();
       list[0].meals.addAll(meals);
@@ -62,10 +62,10 @@ Future<ListMeal> getAllDayMeals() async {
   return listMeal;
 }
 
-String getTotalMealPerDay(List<Meal> listMeal) {
+int getTotalCalories(List<Meal> listMeal) {
   int sum = listMeal.fold(
       0, (previousValue, meal) => previousValue + (meal.calories * meal.count));
-  return '$sum kkal';
+  return sum;
 }
 
 Future<String> getTodayCalorie() async {
@@ -77,10 +77,40 @@ Future<String> getTodayCalorie() async {
     Map<String, dynamic> decoded = jsonDecode(savedList);
     var listMeal = ListMeal.fromJson(decoded);
     var search = listMeal.listMeals
-        .where((element) => getDifferenceInDays(element, now));
+        .where((element) => checkIfDateSame(element.date, now));
+    if (search.isEmpty) {
+      return 'No meal recorded today';
+    }
     var list = search.toList();
-    return getTotalMealPerDay(list[0].meals);
+    return '${getTotalCalories(list[0].meals)} kkal';
   } else {
     return 'No meal recorded today';
+  }
+}
+
+Future<String> getAveragePerWeek() async {
+  final prefs = await SharedPreferences.getInstance();
+  var savedList = prefs.getString(kListMeal);
+  if (savedList != null) {
+    DateTime today = DateTime.now();
+    var firstDay = today.subtract(Duration(days: today.weekday - 1));
+    var lastDay =
+        today.add(Duration(days: DateTime.daysPerWeek - today.weekday));
+    Map<String, dynamic> decoded = jsonDecode(savedList);
+    var listMeal = ListMeal.fromJson(decoded);
+    List<Meal> tempMealList = [];
+    while (!checkIfDateSame(firstDay, lastDay)) {
+      var search = listMeal.listMeals
+          .where((element) => checkIfDateSame(element.date, firstDay));
+      if (search.isNotEmpty) {
+        var meal = search.toList();
+        tempMealList.addAll(meal[0].meals);
+      }
+      firstDay = firstDay.add(const Duration(days: 1));
+    }
+    var total = getTotalCalories(tempMealList);
+    return '${(total / 6).round()} kkal';
+  } else {
+    return 'No meal recorded this week';
   }
 }

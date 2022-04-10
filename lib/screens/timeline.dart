@@ -56,7 +56,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
                         style: kCardTitleStyle,
                       ),
                       Text(
-                        getTotalMealPerDay(meal.meals),
+                        '${getTotalCalories(meal.meals)} kkal',
                         style: kCardTitleStyle,
                       ),
                     ],

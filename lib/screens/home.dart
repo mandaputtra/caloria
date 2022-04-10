@@ -1,9 +1,35 @@
+import 'package:caloria/utils/utils.dart';
 import 'package:caloria/widgets/bottom_navigation.dart';
 import 'package:caloria/widgets/card.dart';
 import 'package:flutter/material.dart';
 
-// ignore: use_key_in_widget_constructors
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String caloriePerWeek = '';
+  String calorieToday = '';
+
+  Future<void> getSummary() async {
+    var fetchPerWeek = await getAveragePerWeek();
+    var fetchToday = await getTodayCalorie();
+
+    setState(() {
+      caloriePerWeek = fetchPerWeek;
+      calorieToday = fetchToday;
+    });
+  }
+
+  @override
+  void initState() {
+    getSummary();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +50,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             ComposableCard(
-                cardTitle: 'Average this week', cardValue: '2.000 kkal'),
-            ComposableCard(cardTitle: 'Today', cardValue: '2.000 kkal'),
+                cardTitle: 'Average this week', cardValue: caloriePerWeek),
+            ComposableCard(cardTitle: 'Today', cardValue: calorieToday),
           ],
         ),
       ),

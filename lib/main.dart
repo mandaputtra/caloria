@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => HomeScreen(),
+        '/': (context) => const HomeScreen(),
         '/InsertMealScreen': (context) => InsertMealScreen(),
         '/TimelineScreen': (context) => const TimelineScreen(),
       },
