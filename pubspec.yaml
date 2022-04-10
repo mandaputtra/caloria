@@ -17,6 +17,7 @@ dependencies:
   shared_preferences: ^2.0.13
   build_runner: ^2.1.8
   json_serializable: ^6.1.5
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

@@ -1,17 +1,43 @@
 import 'package:caloria/constants.dart';
+import 'package:caloria/types/shared.dart';
+import 'package:caloria/utils/utils.dart';
 import 'package:caloria/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class TimelineScreen extends StatelessWidget {
+String pattern = 'dd MMM, yyyy';
+
+class TimelineScreen extends StatefulWidget {
   const TimelineScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TimelineScreen> createState() => _TimelineScreenState();
+}
+
+class _TimelineScreenState extends State<TimelineScreen> {
+  List<DayMeal> listMeals = [];
+
+  Future<void> getAllListMeal() async {
+    var meals = await getAllDayMeals();
+    setState(() {
+      listMeals = meals.listMeals;
+    });
+  }
+
+  @override
+  void initState() {
+    getAllListMeal();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: const BottomNavigation(),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: listMeals.length,
         itemBuilder: (context, index) {
+          var meal = listMeals[index];
           return Card(
             color: Colors.blue,
             margin:
@@ -24,13 +50,13 @@ class TimelineScreen extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const <Widget>[
+                    children: <Widget>[
                       Text(
-                        '28 February 2021',
+                        DateFormat(pattern).format(meal.date),
                         style: kCardTitleStyle,
                       ),
                       Text(
-                        '2000 kkal',
+                        getTotalMealPerDay(meal.meals),
                         style: kCardTitleStyle,
                       ),
                     ],

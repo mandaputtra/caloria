@@ -89,6 +89,8 @@ class _MealExplolerState extends State<MealExploler> {
                     _mealItems = meals;
                     _loading = false;
                   });
+                  var pr = await getAllDayMeals();
+                  print(pr.listMeals.toString());
                 });
               },
               decoration: const InputDecoration(
