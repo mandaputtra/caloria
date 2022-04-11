@@ -25,11 +25,11 @@ Probably, this is actualy one of my idea on my backlog. If this can be serious s
 
 This is my first mobile app. Flutter and Dart is nice. 
 
-Flutter itself is something like web ecosystem, let me elaborate. Most of flutter widget are compose from another widget, its kinda like HTML every element had its `addEventListener` and other stuff. So most likely you can saw all of the widget implementation by just going to the definition. This is why Flutter are powerfull for creating the UI
+Flutter itself are something like web ecosystem, let me elaborate. Most of flutter widget are composed from another widget, kinda like HTML every element had it's own `addEventListener` and other stuff. So most likely you can see all of the widget implementation by just going to the definition. This is why Flutter are powerfull for creating the UI
 
-It's easy to understand on how to compose thing, but the OOP concept can be a bit too much. You can look on my code, I used to code imperatively ~ I left OOP behind 3 years ago when using PHP/Laravel. So learning it again its kinda confusing for me. Especialy when someone on twitter started to point me with BLoC, that are so repetitive.
+It's easy to understand on how to compose thing, but the OOP concept can be a bit too much. You can look on my code, I used to code imperatively ~ I left OOP behind 3 years ago when using PHP/Laravel. So learning it again kinda confuse me. Especially when someone on twitter started to point me with BLoC, that are so repetitive.
 
-Dart is like python, it has many standart library. I also in love with this `..` (double dot) [operator](https://dart.dev/guides/language/language-tour#cascade-notation), feels hacky.
+Dart is like python, it has many standard library. I also in love with this `..` (double dot) [operator](https://dart.dev/guides/language/language-tour#cascade-notation), feels hacky.
 
 Overall, it is complete and fun. Having one source to develop many platform apps are always great. I haven't look at other topic like performance, how to update flutter app without releasing an APK (i forgot what they call it), and many intermediate to advanced topics - since this are just shitty app.
 
