@@ -4,13 +4,13 @@ Toy flutter project that to answer my question, "Is flutter good?". But what the
 
 Please see this video:
 
-[![demo video](./demo_images/Screen Shot 2022-04-11 at 14.11.47.png)](https://youtube.com/shorts/jA1rNDPkpk4?feature=share)
+[![demo video](./demo_images/01.png)](https://youtube.com/shorts/jA1rNDPkpk4?feature=share)
 
 ## Pictures
 
-[Image Demo One](./demo_images/01.png)
+![Image Demo One](./demo_images/01.png)
 
-[Image Demo Two](./demo_images/02.png)
+![Image Demo Two](./demo_images/02.png)
 
 ## Develop
 
