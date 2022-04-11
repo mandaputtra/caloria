@@ -1,10 +1,16 @@
 # Caloria Alpha
 
-Toy flutter project that to answer my question, "Is flutter good?". But what the purpose of this app really? The purpose is it can track your diet calorie per day ~ it it named Caloria. How to use it? 
+Toy flutter project that to answer my question, "Is flutter good?". But what the purpose of this app really? The purpose is it can track your diet calorie per day ~ it it named Caloria. How to use it?
 
 Please see this video:
 
+[![demo video](./demo_images/Screen Shot 2022-04-11 at 14.11.47.png)](https://youtube.com/shorts/jA1rNDPkpk4?feature=share)
+
 ## Pictures
+
+[Image Demo One](./demo_images/01.png)
+
+[Image Demo Two](./demo_images/02.png)
 
 ## Develop
 
@@ -25,7 +31,7 @@ Probably, this is actualy one of my idea on my backlog. If this can be serious s
 
 ## What is like using flutter for this project?
 
-This is my first mobile app. Flutter and Dart is nice. 
+This is my first mobile app. Flutter and Dart is nice.
 
 Flutter itself are something like web ecosystem, let me elaborate. Most of flutter widget are composed from another widget, kinda like HTML every element had it's own `addEventListener` and other stuff. So most likely you can see all of the widget implementation by just going to the definition. This is why Flutter are powerfull for creating the UI
 
@@ -40,4 +46,3 @@ Overall, it is complete and fun. Having one source to develop many platform apps
 - [fatsecret](https://www.fatsecret.co.id/) for providing raw calories data
 - [unofc api of fatsecret](https://fatsecret-unofc-api.vercel.app/)
 - All the libs used here
-
