@@ -4,6 +4,8 @@ Toy flutter project that to answer my question, "Is flutter good?". But what the
 
 Please see this video:
 
+## Pictures
+
 ## Develop
 
 Just like another flutter app - nothing special.

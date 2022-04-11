@@ -2,6 +2,7 @@ import 'package:caloria/constants.dart';
 import 'package:caloria/types/shared.dart';
 import 'package:caloria/utils/utils.dart';
 import 'package:caloria/widgets/bottom_navigation.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -36,34 +37,49 @@ class _TimelineScreenState extends State<TimelineScreen> {
       bottomNavigationBar: const BottomNavigation(),
       body: ListView.builder(
         itemCount: listMeals.length,
-        itemBuilder: (context, index) {
-          var meal = listMeals[index];
-          return Card(
-            color: Colors.blue,
-            margin:
-                const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        DateFormat(pattern).format(meal.date),
-                        style: kCardTitleStyle,
-                      ),
-                      Text(
-                        '${getTotalCalories(meal.meals)} kkal',
-                        style: kCardTitleStyle,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+        itemBuilder: (context, listMealIndex) {
+          var dayMeal = listMeals[listMealIndex];
+          return ExpansionTileCard(
+            initialPadding: const EdgeInsets.all(10),
+            finalPadding: const EdgeInsets.all(10),
+            title: Text(
+              DateFormat(pattern).format(dayMeal.date),
+              style: kCardTitleStyle,
             ),
+            subtitle: Text(
+              '${getTotalCalories(dayMeal.meals)} kkal',
+              style: kCardTitleStyle,
+            ),
+            baseColor: Colors.blue,
+            expandedColor: Colors.blue,
+            children: [
+              const Divider(
+                thickness: 1.0,
+                height: 1.0,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: dayMeal.meals.length,
+                    itemBuilder: (context, dayMealIndex) {
+                      var meal = dayMeal.meals[dayMealIndex];
+                      return ListTile(
+                        title: Text(
+                          '${meal.title} - ${meal.calories * meal.count} kkal',
+                          style: kCardTitleStyle,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
           );
         },
       ),

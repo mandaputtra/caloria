@@ -95,6 +95,9 @@ class _MealExplolerState extends State<MealExploler> {
                 label: Text('Search here'),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             showLoading(),
           ],
         ),
